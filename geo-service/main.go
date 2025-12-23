@@ -52,7 +52,7 @@ func (s *server) GetNearbyDrivers(ctx context.Context, req *pb.GetNearbyDriversR
 
 	var driverIDs []string
 	for _, loc := range locations {
-		driverIDs = append(driverIDs, loc.Name)
+		driverIDs = append(driverIDs, loc)
 	}
 
 	return &pb.GetNearbyDriversResponse{DriverIds: driverIDs}, nil
