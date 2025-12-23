@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package ride;
+
+option go_package = "github.com/ngthluu/miniuber/common/proto/ride";
+
+enum RideStatus {
+  UNKNOWN = 0;
+  CREATED = 1;
+  MATCHED = 2;
+  STARTED = 3;
+  COMPLETED = 4;
+  CANCELLED = 5;
+}
+
+service RideService {
+  rpc CreateRide(CreateRideRequest) returns (CreateRideResponse);
+  rpc GetRide(GetRideRequest) returns (GetRideResponse);
+  rpc UpdateRideStatus(UpdateRideStatusRequest) returns (UpdateRideStatusResponse);
+}
+
+message Location {
+  double latitude = 1;
+  double longitude = 2;
+}
+
+message CreateRideRequest {
+  string passenger_id = 1;
+  Location pickup_location = 2;
+  Location dropoff_location = 3;
+}
+
+message CreateRideResponse {
+  string ride_id = 1;
+}
+
+message GetRideRequest {
+  string ride_id = 1;
+}
+
+message GetRideResponse {
+  string ride_id = 1;
+  string passenger_id = 2;
+  string driver_id = 3;
+  RideStatus status = 4;
+}
+
+message UpdateRideStatusRequest {
+  string ride_id = 1;
+  string driver_id = 2;
+  RideStatus status = 3;
+}
+
+message UpdateRideStatusResponse {
+  bool success = 1;
+}

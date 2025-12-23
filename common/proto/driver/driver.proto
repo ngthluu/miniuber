@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package driver;
+
+option go_package = "github.com/ngthluu/miniuber/common/proto/driver";
+
+service DriverService {
+  rpc GetDriverProfile(GetDriverProfileRequest) returns (GetDriverProfileResponse);
+  rpc ToggleAvailability(ToggleAvailabilityRequest) returns (ToggleAvailabilityResponse);
+}
+
+message GetDriverProfileRequest {
+  string driver_id = 1;
+}
+
+message GetDriverProfileResponse {
+  string name = 2;
+  string vehicle_model = 3;
+  string vehicle_plate = 4;
+  double rating = 5;
+}
+message ToggleAvailabilityRequest {
+  string driver_id = 1;
+  bool is_available = 2;
+}
+
+message ToggleAvailabilityResponse {
+  bool success = 1;
+}

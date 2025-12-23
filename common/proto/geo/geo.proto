@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package geo;
+
+option go_package = "github.com/ngthluu/miniuber/common/proto/geo";
+
+service GeoService {
+  rpc UpdateDriverLocation(UpdateDriverLocationRequest) returns (UpdateDriverLocationResponse);
+  rpc GetNearbyDrivers(GetNearbyDriversRequest) returns (GetNearbyDriversResponse);
+}
+
+message UpdateDriverLocationRequest {
+  string driver_id = 1;
+  double latitude = 2;
+  double longitude = 3;
+}
+
+message UpdateDriverLocationResponse {
+  bool success = 1;
+}
+
+message GetNearbyDriversRequest {
+  double latitude = 1;
+  double longitude = 2;
+  int32 radius_km = 3;
+  int32 limit = 4;
+}
+
+message GetNearbyDriversResponse {
+  repeated string driver_ids = 1;
+}

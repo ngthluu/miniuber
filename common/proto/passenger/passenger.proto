@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package passenger;
+
+option go_package = "github.com/ngthluu/miniuber/common/proto/passenger";
+
+service PassengerService {
+  rpc GetPassengerProfile(GetPassengerProfileRequest) returns (GetPassengerProfileResponse);
+}
+
+message GetPassengerProfileRequest {
+  string passenger_id = 1;
+}
+
+message GetPassengerProfileResponse {
+  string name = 1;
+  string email = 2;
+  double rating = 3;
+}
